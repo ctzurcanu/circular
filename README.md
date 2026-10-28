@@ -1,6 +1,4 @@
-# biz
-
-Local PostgreSQL database: `biz`, port `5432`. Default application locale: `us_en`.
+# circular
 
 ## Model
 
@@ -75,10 +73,10 @@ The local `auth.users` table is an ID placeholder, not a Supabase authentication
 implementation. This setup is a local data model; access policies and a remote
 Supabase deployment are outside the current implementation.
 
-## Imported ECLASS catalog
+## Imported catalog
 
-ECLASS 10.0.1 English/US is now imported: 41,647 classification nodes, 54,992
-class-keyword associations, and 505 property synonyms preserved separately for
+41,647 classification nodes, 54,992 class-keyword associations, 
+and 505 property synonyms preserved separately for
 later property ingestion. Source classifications are neutral `topic` nodes:
 business listings explicitly choose `product` or `service`. No companies or
 representatives are manufactured from this classification data.
@@ -86,7 +84,7 @@ representatives are manufactured from this classification data.
 The importer preserves source/version/IRDI/code identities and SHA-256 checksums.
 Each parent/relation collection has a generated `Other` child with a protected
 `us_en` label. Source Other/unspecified classes retain their original identities.
-There are 6,025 collections in the current database: 6,023 for ECLASS and two
+There are 6,025 collections in the current database: 6,023 and two
 existing Products/Services collections. Leaves do not create additional collections.
 
 Rerunning the importer is safe: the same files reuse nodes and keywords, while
