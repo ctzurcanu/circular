@@ -1,0 +1,4 @@
+project_id = "biz"
+[functions.biz-api]
+# The handler verifies user tokens with Supabase Auth. Search/stats are public.
+verify_jwt = false

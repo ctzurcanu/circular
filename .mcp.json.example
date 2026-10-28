@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "biz": {
+      "command": "deno",
+      "args": ["run", "--config", "/Users/christiantzurcanu/Documents/dev/biz/deno.json", "--allow-env", "--allow-read", "--allow-net=localhost,127.0.0.1", "/Users/christiantzurcanu/Documents/dev/biz/mcp/server.ts"],
+      "env": {"BIZ_MCP_USER_ID": "00000000-0000-4000-8000-000000000001"}
+    }
+  }
+}

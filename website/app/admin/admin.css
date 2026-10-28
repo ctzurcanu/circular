@@ -1,0 +1,28 @@
+.admin-shell {min-height:100vh;background:var(--paper);color:var(--ink)}
+.admin-header {display:flex;align-items:center;gap:24px;border-bottom:1px solid var(--line);padding:20px 32px;background:var(--white)}
+.admin-brand {display:flex;align-items:center;gap:10px;font-size:32px;font-weight:700;letter-spacing:-2px}.admin-brand .admin-name {color:#808080;font-size:26px;letter-spacing:-1px;font-weight:600}.admin-header>a:last-child {margin-left:auto;font-size:12px}
+.admin-shell main {padding:32px;max-width:1800px;margin:auto}.admin-intro h1 {margin-top:12px}.admin-intro p {color:var(--muted)}
+.admin-stats {display:flex;gap:30px;flex-wrap:wrap;padding:18px 0 28px;font-size:13px;color:var(--muted)}.admin-stats strong {color:var(--ink);font-size:22px;font-weight:500;margin-right:6px}
+.admin-grid {display:grid;grid-template-columns:minmax(220px,1fr) minmax(320px,1.5fr) minmax(260px,1fr);gap:18px;align-items:start}
+.admin-panel {background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px}.admin-panel h2 {font-size:19px;letter-spacing:-.4px}.admin-panel label {display:grid;gap:7px;font-size:12px;margin-bottom:14px}.admin-panel input,.admin-panel textarea,.admin-panel select {width:100%;border:1px solid var(--line);border-radius:7px;padding:10px;background:var(--paper);color:var(--ink)}
+.admin-node-list {max-height:60vh;overflow:auto;margin-top:12px}.admin-node {display:grid;gap:6px;text-align:left;padding:12px;width:100%;border-bottom:1px solid var(--line);border-radius:5px}.admin-node:hover,.admin-node.selected {background:var(--sage)}.admin-node small {font-size:11px;color:var(--muted)}.admin-node strong {font-size:13px;font-weight:500}
+.admin-pagination {display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-size:11px}.admin-pagination button {padding:7px}.admin-trail {display:flex;flex-wrap:wrap;gap:4px;color:var(--muted);font-size:11px;margin-bottom:20px}.admin-trail button {padding:0}.admin-controls {display:flex;gap:12px;margin-top:20px}.admin-controls label {flex:1;min-width:0}.admin-placeholder {padding:40px 0;color:var(--muted)}
+.admin-editor h2:not(:first-child) {margin-top:30px;padding-top:24px;border-top:1px solid var(--line)}.admin-check {display:flex!important;align-items:center;gap:8px!important}.admin-check input {width:16px;accent-color:var(--green)}.admin-targets {max-height:180px;overflow:auto;border:1px solid var(--line);border-radius:7px;margin-bottom:14px}.admin-targets button {display:grid;gap:4px;padding:10px;text-align:left;width:100%}.admin-targets button:hover {background:var(--sage)}.admin-targets small {color:var(--muted);font-size:10px}.admin-notice {padding:12px;border-radius:7px;background:var(--sage);font-size:12px}.admin-new-relation {margin-top:25px;border-top:1px solid var(--line);padding-top:20px}.admin-new-relation summary {cursor:pointer;font-size:13px;margin-bottom:18px}.admin-rules {margin-top:20px;font-size:11px}.admin-panel .muted {font-size:12px}
+@media(max-width:1100px){.admin-grid {grid-template-columns:1fr 1.4fr}.admin-editor {grid-column:1/-1}.admin-editor form {max-width:600px}}
+@media(max-width:650px){.admin-header {padding:16px;gap:14px;font-size:12px}.admin-shell main {padding:20px 14px}.admin-grid {grid-template-columns:1fr}.admin-editor {grid-column:auto}.admin-controls {flex-direction:column}.admin-stats {gap:16px}.admin-node-list {max-height:40vh}}
+/* Keep the expandable tree prominent; details and advanced tools remain alongside it. */
+.admin-grid {grid-template-columns:minmax(380px,1.7fr) minmax(260px,1fr) minmax(260px,1fr)}
+.admin-tree-scroll {max-height:75vh;overflow:auto;margin-top:16px}
+.taxonomy-tree,.taxonomy-tree ul {list-style:none;margin:0;padding:0}
+.tree-row {display:flex;align-items:center;gap:5px;min-height:52px;border-radius:6px;border-bottom:1px solid var(--line)}
+.tree-row:hover,.tree-row.selected {background:var(--sage)}
+.tree-toggle {align-self:stretch;min-width:24px;padding:4px;font-size:17px;color:var(--muted)}
+.tree-node-name {display:grid;gap:4px;flex:1;min-width:90px;text-align:left;padding:8px 0}
+.tree-node-name strong {font-size:12px;font-weight:500;overflow-wrap:anywhere}.tree-node-name small {font-size:10px;color:var(--muted)}
+.tree-actions {display:flex;gap:2px;flex-wrap:wrap;justify-content:flex-end;max-width:80px;flex-shrink:0}
+.tree-actions button {padding:5px;font-size:10px;color:var(--green);border-radius:4px;white-space:nowrap}.tree-actions button:hover {background:var(--line)}
+.tree-children {margin-left:12px;padding-left:8px;border-left:1px solid var(--line)}
+.tree-relation-label {display:block;padding:10px 0 4px;font-size:10px;letter-spacing:.4px;color:var(--muted)}
+.tree-inline-editor {background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:14px;margin:10px 0 10px 22px}.tree-inline-editor h3 {font-size:13px;letter-spacing:0}.tree-inline-editor label {font-size:11px}.tree-editor-actions {display:flex;justify-content:flex-end;gap:8px}.tree-editor-actions button {padding:9px 12px;font-size:11px}.tree-empty {padding:10px 0;font-size:11px}
+@media(max-width:1200px){.admin-grid {grid-template-columns:minmax(360px,1.5fr) minmax(260px,1fr)}.admin-editor {grid-column:1/-1}}
+@media(max-width:750px){.admin-grid {grid-template-columns:minmax(0,1fr)}.tree-actions {max-width:90px}.admin-tree-scroll {max-height:65vh}}

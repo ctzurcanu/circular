@@ -1,0 +1,37 @@
+name: Deploy Supabase functions
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - run: deno task check
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+      - name: Configure and deploy function
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SUPABASE_PROJECT_REF: ${{ vars.SUPABASE_PROJECT_REF }}
+          BIZ_DATABASE_URL: ${{ secrets.BIZ_DATABASE_URL }}
+          ALLOWED_ORIGINS: ${{ vars.ALLOWED_ORIGINS }}
+        shell: bash
+        run: |
+          set -eu
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          for key in ('BIZ_DATABASE_URL','ALLOWED_ORIGINS','SUPABASE_PROJECT_REF','SUPABASE_ACCESS_TOKEN'):
+              if not os.environ.get(key): raise SystemExit(f'Missing configuration: {key}')
+          destination = Path(os.environ['RUNNER_TEMP']) / 'biz-function.env'
+          destination.write_text('\n'.join(key+'='+json.dumps(os.environ[key]) for key in ('BIZ_DATABASE_URL','ALLOWED_ORIGINS'))+'\n')
+          PY
+          supabase secrets set --env-file "$RUNNER_TEMP/biz-function.env" --project-ref "$SUPABASE_PROJECT_REF"
+          rm "$RUNNER_TEMP/biz-function.env"
+          supabase functions deploy biz-api --project-ref "$SUPABASE_PROJECT_REF"

@@ -1,0 +1,9 @@
+{
+  "nodeModulesDir":"auto",
+  "compilerOptions":{"strict":true},
+  "tasks":{
+    "functions":"deno run --allow-env --allow-net=127.0.0.1,localhost --allow-read supabase/functions/local.ts",
+    "mcp":"deno run --allow-env --allow-read --allow-net=127.0.0.1,localhost mcp/server.ts",
+    "check":"deno check supabase/functions/biz-api/index.ts supabase/functions/local.ts mcp/server.ts"
+  }
+}
