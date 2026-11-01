@@ -165,6 +165,7 @@ INSERT INTO public.locale (locale, display_name, dir, is_active, is_source)
 VALUES ('us_en', 'English (United States)', 'ltr', true, true);
 
 -- psql resolves this path relative to this schema file.
+\ir migrations/000_legacy_graph_compatibility.sql
 \ir migrations/001_business_graph.sql
 \ir migrations/002_catalog_and_listings.sql
 \ir migrations/003_web_boundary.sql

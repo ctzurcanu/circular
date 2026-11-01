@@ -43,7 +43,7 @@ CREATE TABLE public.catalog_property_synonym (
   PRIMARY KEY (release_id, irdi, property_irdi)
 );
 CREATE INDEX node_alias_node_idx ON public.ontology_node_alias (node_id);
-CREATE INDEX node_name_search_idx ON public.node_name USING gin (to_tsvector('english', name || ' ' || coalesce(description, '')));
+CREATE INDEX node_name_english_search_idx ON public.node_name USING gin (to_tsvector('english', name || ' ' || coalesce(description, '')));
 CREATE INDEX node_alias_search_idx ON public.ontology_node_alias USING gin (to_tsvector('english', alias));
 
 CREATE MATERIALIZED VIEW public.catalog_ancestor AS

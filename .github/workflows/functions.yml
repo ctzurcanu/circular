@@ -27,10 +27,10 @@ jobs:
           python3 - <<'PY'
           import json, os
           from pathlib import Path
-          for key in ('BIZ_DATABASE_URL','ALLOWED_ORIGINS','SUPABASE_PROJECT_REF','SUPABASE_ACCESS_TOKEN'):
+          for key in ('ALLOWED_ORIGINS','SUPABASE_PROJECT_REF','SUPABASE_ACCESS_TOKEN'):
               if not os.environ.get(key): raise SystemExit(f'Missing configuration: {key}')
           destination = Path(os.environ['RUNNER_TEMP']) / 'biz-function.env'
-          destination.write_text('\n'.join(key+'='+json.dumps(os.environ[key]) for key in ('BIZ_DATABASE_URL','ALLOWED_ORIGINS'))+'\n')
+          destination.write_text('\n'.join(key+'='+json.dumps(os.environ[key]) for key in ('BIZ_DATABASE_URL','ALLOWED_ORIGINS') if os.environ.get(key))+'\n')
           PY
           supabase secrets set --env-file "$RUNNER_TEMP/biz-function.env" --project-ref "$SUPABASE_PROJECT_REF"
           rm "$RUNNER_TEMP/biz-function.env"

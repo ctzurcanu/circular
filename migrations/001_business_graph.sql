@@ -202,7 +202,8 @@ CREATE TRIGGER node_name_other_guard BEFORE UPDATE OR DELETE ON public.node_name
 
 INSERT INTO public.edge_type (code, name, is_hierarchy)
 VALUES ('subtype', 'Has subtype', true), ('part', 'Has part', true),
-       ('related', 'Related to', false);
+       ('related', 'Related to', false)
+ON CONFLICT (code) DO NOTHING;
 
 DO $$
 DECLARE root_id bigint; relation_id smallint; kind text;

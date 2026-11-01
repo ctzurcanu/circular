@@ -211,7 +211,10 @@ Its build exports `website/out/` for GitHub Pages. Server operations live in
 Migrations 003/004 add the web access boundary and private conversations and are
 applied locally. See [website setup and deployment](website/README.md) for local
 preview, GitHub Pages workflows, Supabase preparation, function secrets, and Auth
-redirect settings. No remote deployment has been performed in this workspace.
+redirect settings. The frontend is deployed at
+<https://ctzurcanu.github.io/circular/>. The hosted database has migrations 000–007
+and the `biz-api` Edge Function deployed; the ECLASS catalog must be imported
+separately into each hosted database.
 
 ## MCP server
 

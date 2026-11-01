@@ -64,9 +64,9 @@ live business records.
 
 ## GitHub Pages deployment
 
-Push this project into a GitHub repository. The current workspace is not yet a
-Git repository and has no configured GitHub remote. Set Pages deployment source
-to **GitHub Actions**. Add repository variables:
+The repository is `ctzurcanu/circular`, with Pages configured to use **GitHub
+Actions**. The frontend is live at <https://ctzurcanu.github.io/circular/>.
+Its repository variables are:
 
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
@@ -88,7 +88,10 @@ python3 scripts/prepare_supabase.py
 
 Apply that generated SQL only to a **fresh Supabase project** with no application
 tables. For a project containing the original base schema, apply only the missing
-numbered migrations in order after checking its existing schema. Do not run the
+numbered migrations in order after checking its existing schema. Migration 000
+adapts the original hosted graph's parent/slug restrictions and English locale;
+001 reuses existing relation types. Do not reapply migrations already installed.
+Do not run the
 full bootstrap over existing tables. The app migrations are not automatically
 applied by function deployment.
 
@@ -105,8 +108,9 @@ database URL in Supabase secrets.
 
 ## Supabase function deployment
 
-Set `BIZ_DATABASE_URL` to the target PostgreSQL/session-pooler connection string.
-Set `ALLOWED_ORIGINS` to the exact frontend origin, such as
+The hosted entry point uses Supabase's managed `SUPABASE_DB_URL` by default.
+Set `BIZ_DATABASE_URL` only to override it with another backend PostgreSQL or
+session-pooler connection string. Set `ALLOWED_ORIGINS` to the exact frontend origin, such as
 `https://username.github.io` (without `/repository`). Multiple origins may be
 comma-separated. Keep connection credentials in an ignored env file based on
 `supabase/functions/.env.example`:
@@ -124,8 +128,9 @@ require verified identity and the appropriate membership. Platform `verify_jwt`
 is disabled only so anonymous search can work; protected routes still verify
 each user's token inside the function.
 
-For deployment through GitHub, set secrets `SUPABASE_ACCESS_TOKEN` and
-`BIZ_DATABASE_URL`, plus variables `SUPABASE_PROJECT_REF` and `ALLOWED_ORIGINS`.
+For deployment through GitHub, set secret `SUPABASE_ACCESS_TOKEN`, plus variables
+`SUPABASE_PROJECT_REF` and `ALLOWED_ORIGINS`. `BIZ_DATABASE_URL` is an optional
+secret override; omit it to use the managed database connection.
 Run `.github/workflows/functions.yml` manually. It type-checks and deploys only
 the hosted `biz-api` entry point, never the local development server.
 
@@ -151,6 +156,7 @@ sends you back to chat more. A proposal can seed the listing form with one click
 ## Verification
 
 ```sh
+python3 tests/test_hosted_upgrade.py
 cd website && npm run typecheck && npm run build
 cd ..
 deno task check
